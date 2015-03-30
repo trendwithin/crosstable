@@ -16,9 +16,9 @@
   <tbody>
     <% @tournaments.each do |tournament| %>
       <tr>
-        <td><%= tournament.player_id %></td>
-        <td><%= tournament.opening_id %></td>
-        <td><%= tournament.opponent_id %></td>
+        <td><%= tournament.player.name %></td>
+        <td><%= tournament.opening.name %></td>
+        <td><%= tournament.opponent.name %></td>
         <td><%= tournament.name %></td>
         <td><%= link_to 'Show', tournament %></td>
         <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
