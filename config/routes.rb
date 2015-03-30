@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   resources :openings
   resources :players
   resources :tournaments
-  resources :products do
 end
