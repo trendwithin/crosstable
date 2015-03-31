@@ -1,28 +1,30 @@
-== README
+#Tournament
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+###An exercise in has_many through
 
-Things you may want to cover:
+A chess tournament crosstable is a quintessential example from which a has_many through relationship in Rails can be modelled.
 
-* Ruby version
+A Tournament has many players.  There are many games played between players. In looking up a tournament one should be to find a report of the games played and by whom.
 
-* System dependencies
+![alt tag](public/cross_table.png)
 
-* Configuration
+To set up the associations I modelled Tournament, Player, and Opening as a represenation of a full game.  
 
-* Database creation
+<strong>Tournament</strong>
 
-* Database initialization
+*  belongs_to :opening
+*  belongs_to :player
+*  belongs_to :opponent, :class_name => 'Player'
 
-* How to run the test suite
+<strong> Player </strong>
 
-* Services (job queues, cache servers, search engines, etc.)
+*  has_many :tournaments
+*  has_many :openings :through => :tournaments
+*  has_many :opponents, :trough => :tournaments
 
-* Deployment instructions
+<strong>Opening</strong>
 
-* ...
+*  has_many :tournaments
+*  has_many :players, :through => :tournaments
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+There are further associations that can be made such as not all games are played in tournaments.  Some might be matches, simuls, blindfold exhibitions.  Not all games are of the same length, some may be blitz, rapid, or stardard time controll.  These are currently outside the scope of this project.
